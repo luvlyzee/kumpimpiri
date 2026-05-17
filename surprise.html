@@ -48,7 +48,7 @@
         <div id="stage-box" class="block bg-white/80 p-8 rounded-[2.5rem] shadow-2xl border border-rose-100 backdrop-blur-md transform transition-all duration-500 scale-100">
             <div class="text-6xl mb-6 animate-[bounce_1.5s_infinite] cursor-pointer inline-block" onclick="nextStage('stage-box', 'stage-proposal')">🎁</div>
             <h2 class="text-2xl font-black text-rose-600 mb-2 italic">You reached the final page...</h2>
-            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Matagal mo itong hinintay, love. Handa ka na ba sa magiging sagot ko sa'yo?</p>
+            <p class="text-slate-500 text-sm mb-6 leading-relaxed">Anong kalokohan kaya ito??? hmmm hulaan muee!! </p>
             
             <button onclick="nextStage('stage-box', 'stage-proposal')" class="px-8 py-3.5 bg-gradient-to-r from-rose-500 to-red-500 text-white font-bold text-xs uppercase tracking-widest rounded-full shadow-lg hover:shadow-rose-200 transition-all active:scale-95 cursor-pointer">
                 Yes, Pakita na! 🥰
@@ -58,7 +58,7 @@
         <div id="stage-proposal" class="hidden bg-white/80 p-8 rounded-[2.5rem] shadow-2xl border border-rose-100 backdrop-blur-md relative min-h-[300px] flex flex-col justify-center items-center">
             <div class="text-5xl mb-4">🫣❤️</div>
             <h2 class="text-2xl font-black text-slate-800 mb-2 italic">Before anything else...</h2>
-            <p class="text-slate-500 text-sm mb-8 leading-relaxed">Tanong lang, will you hold my hand and stay with me forever?</p>
+            <p class="text-slate-500 text-sm mb-8 leading-relaxed">Handa ka bang sumalo ng suntok ko?</p>
             
             <div class="flex gap-4 w-full justify-center max-w-xs relative h-14">
                 <button onclick="triggerPopups()" class="absolute left-4 px-8 py-3 bg-emerald-500 text-white font-black text-sm rounded-full shadow-md hover:bg-emerald-600 active:scale-95 transition-all cursor-pointer">
@@ -74,7 +74,7 @@
             <div class="text-5xl mb-4" id="popup-emoji">🤔</div>
             <h3 class="text-rose-500 font-bold text-xs uppercase tracking-widest mb-2" id="popup-header">Sigurado ka ba?</h3>
             <h2 class="text-xl font-black text-slate-800 mb-8 leading-snug" id="popup-text">
-                Wait, sure ka na ba talaga sa pinapasok mo? 🫣
+                Wait, sure ka na ba talaga sa pinapasok mo? wala ng atrasan ha?
             </h2>
             <button onclick="handlePopupNext()" class="w-full max-w-xs py-3.5 bg-gradient-to-r from-rose-500 to-red-500 text-white font-extrabold text-xs uppercase tracking-widest rounded-full shadow-md active:scale-97 transition-all cursor-pointer">
                 Sure na sure! 🫡
@@ -82,7 +82,7 @@
         </div>
 
         <div id="stage-countdown" class="hidden bg-white/80 p-8 rounded-[2.5rem] shadow-2xl border border-rose-100 backdrop-blur-md">
-            <h3 class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-6">Bilangin muna natin ang mga araw...</h3>
+            <h3 class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-6">Let's count the days...</h3>
             
             <div class="grid grid-cols-3 gap-3 max-w-xs mx-auto mb-4">
                 <div class="bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
@@ -103,22 +103,22 @@
 
         <div id="stage-reveal" class="hidden opacity-0 scale-95 transform transition-all duration-1000 ease-out bg-white/95 p-8 rounded-[3rem] shadow-2xl border-2 border-rose-200 backdrop-blur-md relative">
             
-            <div class="text-5xl mb-4 animate-pulse">❤️</div>
+            <div class="text-5xl mb-4 animate-pulse">💗</div>
             
-            <h3 class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-2">My Ultimatum Answer</h3>
+            <h3 class="text-slate-400 font-bold text-xs uppercase tracking-widest mb-2">My answer to your question.</h3>
             
             <h1 class="grand-text text-2xl font-black text-rose-600 leading-relaxed mb-6 italic">
-                "After 2 years, 6 months and 7 days, I am finally giving you my answer.... It's a yes, baby!"
+                "After 2 years, 6 months and 7 days, I am finally giving you my answer...."
             </h1>
 
             <div class="p-4 bg-rose-50 rounded-2xl border border-rose-100 mb-6">
                 <p class="text-slate-600 text-xs font-medium leading-relaxed">
-                    Official na tayo, love! Walang bawiang magaganap ha. Sobra kitang mahal at excited na ako sa susunod na kabanata ng buhay natin nang magkasama. Araw-araw kitang pipiliin! 🤍🥂
+                    It's a yes, mahal! Ito na, may label na after ilang years ng panliligaw mo hehehhe, ito nalang din naman ang hinihintay mo. Nawa'y mas tumibay pa tayo at sana mas tumino ka na! I love you, babyy! 🤍🥂
                 </p>
             </div>
 
             <a href="index.html" class="inline-block text-[10px] font-bold uppercase tracking-wider text-rose-500 bg-white px-5 py-2.5 rounded-full border border-rose-200 shadow-md transition-transform duration-200 active:scale-95 cursor-pointer">
-                Back to Main Dashboard 🏠
+                exittt
             </a>
         </div>
 
@@ -126,9 +126,9 @@
 
     <script>
         const popupsData = [
-            { header: "Sure ka na ba talaga?", text: "Bawal mapika sa asaran keme ha? Tanggap mo ba lahat ng topak ko? 😤", emoji: "🤨" },
-            { header: "Isa pa...", text: "Kahit marami akong cravings sa kape at buldak, ikaw pa rin taga-bayad? Char! Hahaha! 🍜", emoji: "💸" },
-            { header: "Eto talaga...", text: "Kahit na laging puyat sa IT code at requirements, iintindihin mo ko palagi? 💻", emoji: "🥺" },
+            { header: "Sure ka na ba talaga?", text: "Bawal mapika sa asaran ha? Tanggap mo ba lahat ng topak ko? 😤", emoji: "🤨" },
+            { header: "Isa pa...", text: "ready mo ba akong pautangin palagi at samahan sa kapghan?!! 🍜", emoji: "💸" },
+            { header: "Eto talaga...", text: "Kahit na laging badtrip sa init, iintindihin mo ko palagi? 💻", emoji: "🥺" },
             { header: "Huling Tanong!", text: "Mamahalin mo rin ba pati yung cute kong pusa nang buong puso? 🐱", emoji: "🤍" },
             { header: "Ayiiieee!", text: "O sige na nga, ready ka na ba talaga makita ang huling sagot ko? Click na! 👇", emoji: "🤭" }
         ];
@@ -204,8 +204,8 @@
                         
                         setTimeout(() => {
                             finalReveal.classList.remove('opacity-0', 'scale-95');
-                            // Tinanggal ang confetti library trigger para iwas white-screen bug, pure hearts na lang sis!
-                            setInterval(createFloatingHeart, 250);
+                            // FIXED: Tinanggal na yung triggerConfetti() para diretso at kumpisado ang loading sa application webview wrapper niyo nang walang crash
+                            setInterval(createFloatingHeart, 200);
                         }, 100); 
                     }, 2000);
                 }
