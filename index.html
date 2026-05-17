@@ -3,141 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love ✨</title>
-    <!-- Tailwind CSS for clean, beautiful styling -->
+    <title>For My Love | Dashboard ✨</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+        h1, h2, h3, .menu-title {
+            font-family: 'Playfair Display', serif !important;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col items-center justify-center font-sans antialiased overflow-x-hidden selection:bg-rose-100 selection:text-rose-600">
+<body class="bg-[radial-gradient(circle_at_center,_var(--color-rose-100)_0%,_var(--color-rose-50)_40%,_var(--color-white)_100%)] min-h-screen flex flex-col items-center justify-center font-sans antialiased overflow-x-hidden selection:bg-rose-100 selection:text-rose-600">
 
-    <!-- ================= SECTION 1: LOGIN SCREEN ================= -->
-    <div id="login-screen" class="max-w-md w-full mx-4 p-8 rounded-3xl bg-white/80 border border-rose-100/80 backdrop-blur-md shadow-xl shadow-rose-100/40 transition-all duration-500 block">
-        
-        <!-- Animated Padlock Icon Section -->
-        <div class="text-center mb-8">
-            <div class="inline-flex p-4 rounded-full bg-rose-50 text-rose-500 mb-4 transition-all duration-300 shadow-sm" id="lock-badge">
-                <!-- SVG for Locked Padlock -->
-                <svg id="lock-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10 transition-all duration-300">
+    <script>
+        if (localStorage.getItem('isLoveLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <div id="quiz-warning-modal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white p-6 rounded-[2rem] border-2 border-rose-300 max-w-xs w-full text-center shadow-2xl transition-all transform scale-100">
+            <div class="inline-flex p-3 rounded-full bg-rose-50 text-rose-500 mb-3 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                 </svg>
             </div>
-            <h1 class="text-2xl font-bold tracking-tight text-slate-900" id="login-title">Unlock My Heart</h1>
-            <p class="text-slate-500 text-sm mt-1" id="login-subtitle">Ipasok ang ating secret date para magbukas. ❤️</p>
-        </div>
-
-        <!-- Error Message -->
-        <div id="error-message" class="hidden mb-5 p-3.5 bg-rose-50 border border-rose-200 rounded-2xl text-rose-600 text-sm text-center font-medium animate-pulse">
-            Mali ang password, love. Subukan mo ulit! 🥺
-        </div>
-
-        <!-- Password Input Field -->
-        <div class="space-y-5">
-            <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2 text-center">Enter Secret Code</label>
-                <input type="password" id="password" inputmode="numeric" pattern="[0-8]*"
-                       class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 text-center text-lg font-semibold tracking-widest focus:outline-none focus:border-rose-400 focus:ring-4 focus:ring-rose-100 transition-all duration-200" 
-                       placeholder="••••••">
-            </div>
-
-            <button onclick="checkLogin()" 
-                    class="w-full py-4 mt-2 bg-gradient-to-r from-rose-500 to-red-500 text-white font-semibold rounded-2xl shadow-lg shadow-rose-500/20 hover:opacity-95 active:scale-[0.98] transition-all duration-200 cursor-pointer text-center">
-                Open App ✨
+            <h3 class="text-slate-800 font-black text-xl mb-1 tracking-tight">OPS, BAWAL PA! 🫣</h3>
+            <p class="text-slate-500 text-xs mb-4 leading-relaxed">Sagutan mo muna ang quiz nang tama bago mo mabasa ang sulat ko! 😤❤️</p>
+            <button onclick="closeWarningModal()" class="w-full py-2.5 bg-gradient-to-r from-rose-500 to-red-500 text-white text-xs font-bold rounded-full uppercase tracking-wider shadow-md active:scale-95 transition-all cursor-pointer">
+                okeh prinsesa ko, quiz muna!
             </button>
         </div>
     </div>
 
-
-    <!-- ================= SECTION 2: MAIN CONTENT ================= -->
-    <div id="main-content" class="max-w-md w-full mx-4 p-6 rounded-3xl bg-white border border-rose-100/50 shadow-xl shadow-rose-100/30 text-center transition-all duration-500 transform scale-95 opacity-0 hidden">
+    <div class="max-w-md w-full mx-auto px-4 py-8 text-center">
         
-        <!-- Header Text -->
-        <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-rose-500 to-red-600 bg-clip-text text-transparent mb-2">
-            Para sa Paborito Kong Tao ✨
+        <h1 class="text-3xl font-black tracking-tight bg-gradient-to-r from-rose-500 to-red-600 bg-clip-text text-transparent mb-1 italic">
+            Hello, My Love! 🤍
         </h1>
-        <p class="text-slate-500 text-sm mb-6">Salamat sa pag-unlock nito. May inihanda ako para sa'yo.</p>
+        <p class="text-slate-500 text-xs mb-8">Pick one muna okay!!!!</p>
 
-        <!-- Lagayan ng Picture sa Gitna -->
-        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm mb-6 flex items-center justify-center relative group">
-            <!-- Palitan mo nalang ang link sa baba ng mukha niyo teh -->
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop" 
-                 alt="Our Cutest Moment" 
-                 class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500">
+        <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8">
             
-            <span class="absolute bottom-3 right-3 px-3 py-1 text-[10px] font-bold tracking-wider bg-white/90 text-rose-600 rounded-full border border-rose-100 shadow-sm backdrop-blur-sm">
-                OUR MOMENT 🤍
-            </span>
-        </div>
-
-        <!-- Description Keme Section -->
-        <div class="bg-rose-50/30 border border-rose-100/50 rounded-2xl p-5 mb-8 text-left space-y-3">
-            <h2 class="text-xs font-bold tracking-wider uppercase text-rose-500 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-rose-500">
-                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383-.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-                </svg>
-                A Little Note From Me...
-            </h2>
-            <p class="text-slate-600 text-sm leading-relaxed">
-                Hi love! Gusto ko lang sabihin kung gaano ako kaswerte na naging bahagi ka ng buhay ko. Bawat tawa, bawat asaran, at bawat moment natin, pinapahalagahan ko talaga nang sobra. 
-            </p>
-            <p class="text-slate-400 text-xs italic">
-                "Sa dinami-dami ng pwedeng mapili sa mundong ito, ikaw pa rin ang pipiliin ko araw-araw."
-            </p>
-        </div>
-
-        <!-- Button sa Baba na Click Here -->
-        <div>
-            <a href="proposal.html" 
-               class="inline-block w-full py-4 bg-gradient-to-r from-rose-500 to-red-500 text-white font-semibold rounded-2xl shadow-lg shadow-rose-500/20 hover:opacity-95 active:scale-[0.98] transition-all duration-200 text-center">
-                Click Here For a Surprise! 🎁
+            <a href="images.html" class="group relative block aspect-square rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-md shadow-rose-100/30 transition-all duration-300 active:scale-95">
+                <img src="https://i1-c.pinimg.com/736x/a4/69/13/a469138142130e3d5750292d92b4a563.jpg" alt="Memories" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center pb-3 px-2">
+                    <span class="text-white font-bold text-xs tracking-wide shadow-sm">📸 Our Photos</span>
+                </div>
             </a>
+
+            <a href="music.html" class="group relative block aspect-square rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-md shadow-rose-100/30 transition-all duration-300 active:scale-95">
+                <img src="https://i1-c.pinimg.com/1200x/0f/e9/a8/0fe9a8aa8a6ba4cb2a10b52c7567ff3d.jpg" alt="Cats" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center pb-3 px-2">
+                    <span class="text-white font-bold text-xs tracking-wide shadow-sm">🎵 Music for You</span>
+                </div>
+            </a>
+
+            <a href="quiz.html" class="group relative block aspect-square rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-md shadow-rose-100/30 transition-all duration-300 active:scale-95">
+                <img src="https://i.pinimg.com/736x/81/2e/68/812e68788feac19d9a913a1fd51f868c.jpg" alt="Foods" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center pb-3 px-2">
+                    <span class="text-white font-bold text-xs tracking-wide shadow-sm">🎮 Quiz Time</span>
+                </div>
+            </a> 
+
+            <a href="letters.html" id="letters-link" onclick="handleLettersClick(event)" class="group relative block aspect-square rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-md shadow-rose-100/30 transition-all duration-300 active:scale-95 opacity-60">
+                <img src="https://i.pinimg.com/736x/35/16/a6/3516a6779b1457022836dae20313122f.jpg" alt="Letter" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center pb-3 px-2">
+                    <span id="letters-text" class="text-white font-bold text-xs tracking-wide shadow-sm flex items-center gap-1">🔒 Dear Love</span>
+                </div>
+            </a>
+
         </div>
+
+        <button onclick="logout()" class="text-xs font-semibold text-slate-400 hover:text-rose-500 transition-colors bg-white/60 px-4 py-2 rounded-full border border-slate-100 shadow-sm cursor-pointer">
+            🔒 Lock App
+        </button>
     </div>
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        function checkLogin() {
-            const passIn = document.getElementById('password').value;
-            const errorMsg = document.getElementById('error-message');
+        function checkQuizStatus() {
+            const lettersLink = document.getElementById('letters-link');
+            const lettersText = document.getElementById('letters-text');
             
-            const loginScreen = document.getElementById('login-screen');
-            const mainContent = document.getElementById('main-content');
-            const lockIcon = document.getElementById('lock-icon');
-            const lockBadge = document.getElementById('lock-badge');
-
-            // Check kung tama ang pinong password
-            if (passIn === '030405') {
-                errorMsg.classList.add('hidden');
-                
-                // 1. Palitan ang Padlock Icon para maging "Unlocked" gamit ang SVG path
-                lockIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />`;
-                
-                // 2. Magdagdag ng green/success color effect sa badge saglit para dama ang pagbukas
-                lockBadge.classList.remove('bg-rose-50', 'text-rose-500');
-                lockBadge.classList.add('bg-emerald-50', 'text-emerald-500', 'scale-110');
-                
-                document.getElementById('login-title').innerText = "Access Granted! ❤️";
-
-                // 3. Smooth transition: Hintayin matapos ang lock animation bago lumipat sa Main Content
-                setTimeout(() => {
-                    loginScreen.classList.add('opacity-0', 'scale-95');
-                    
-                    setTimeout(() => {
-                        loginScreen.classList.add('hidden');
-                        
-                        // Ipakita ang Main Content (yung may picture at description)
-                        mainContent.classList.remove('hidden');
-                        setTimeout(() => {
-                            mainContent.classList.remove('opacity-0', 'scale-95');
-                            mainContent.classList.add('opacity-100', 'scale-100');
-                        }, 50);
-                    }, 400);
-                }, 600); // 600ms delay para masaksihan muna ang pagbukas ng padlock
-
-            } else {
-                // Pag mali, pakita agad ang error card at i-reset ang field
-                errorMsg.classList.remove('hidden');
-                document.getElementById('password').value = '';
+            if (localStorage.getItem('quizPassed') === 'true') {
+                lettersLink.classList.remove('opacity-60');
+                lettersText.innerHTML = "✉️ Dear Love";
             }
         }
+
+        function handleLettersClick(event) {
+            if (localStorage.getItem('quizPassed') !== 'true') {
+                event.preventDefault(); 
+                document.getElementById('quiz-warning-modal').classList.remove('hidden');
+            }
+        }
+
+        function closeWarningModal() {
+            document.getElementById('quiz-warning-modal').classList.add('hidden');
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoveLoggedIn');
+            localStorage.removeItem('quizPassed'); 
+            window.location.href = 'login.html';
+        }
+
+        // Automatic window trigger validation sequence
+        window.onload = checkQuizStatus;
     </script>
 </body>
 </html>

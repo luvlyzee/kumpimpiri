@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock My Heart ✨</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-[radial-gradient(circle_at_center,_var(--color-rose-100)_0%,_var(--color-rose-50)_40%,_var(--color-white)_100%)] text-slate-800 min-h-screen flex flex-col items-center justify-center font-sans antialiased overflow-x-hidden selection:bg-rose-100 selection:text-rose-600">
+
+    <div class="w-full flex flex-col items-center justify-center relative min-h-screen px-4">
+        
+        <div id="error-message" class="hidden mb-6 w-full max-w-xs p-3.5 bg-white/90 border border-rose-200 rounded-2xl text-rose-600 text-sm text-center font-medium shadow-md shadow-rose-100 animate-pulse">
+            Mali ang password, bebe! 🥺
+        </div>
+
+        <div class="relative w-96 h-[450px] flex flex-col items-center justify-end pb-12">
+            
+            <div id="lock-shackle" class="absolute top-0 w-48 h-56 border-[22px] border-slate-300 rounded-t-full transition-all duration-500 origin-bottom shadow-md" style="z-index: 1; border-bottom: none;">
+                <div class="w-full h-full border-[5px] border-white/40 rounded-t-full" style="border-bottom: none;"></div>
+            </div>
+            
+            <div class="absolute bottom-0 w-96 h-96 drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]" style="z-index: 2;">
+                <svg viewBox="0 0 100 90" class="w-full h-full text-red-600 fill-current filter drop-shadow-[0_20px_25px_rgba(185,28,28,0.35)]">
+                    <path d="M50 85c-1.5 0-2.8-.7-3.8-1.8L12.7 49.3C5.3 41.6 5.3 29.2 12.7 21.5c7-7.3 18.2-7.6 25.6-.8l11.7 10.7 11.7-10.7c7.4-6.8 18.6-6.5 25.6.8 7.4 7.7 7.4 20.1 0 27.8L53.8 83.2c-1 1.1-2.3 1.8-3.8 1.8z"/>
+                </svg>
+            </div>
+
+            <div class="absolute bottom-0 w-full h-96 flex flex-col items-center justify-center pt-16 pb-4 px-8 text-center" style="z-index: 3;">
+                
+                <div class="w-full max-w-[180px] mb-4">
+                    <input type="password" maxlength="6" id="password" inputmode="numeric" pattern="[0-9]*"
+                           class="w-full py-2 bg-white/20 border border-white/30 rounded-full text-white text-center text-xl font-bold tracking-[0.4em] placeholder:text-white/40 placeholder:tracking-normal focus:outline-none focus:border-white focus:ring-4 focus:ring-white/20 transition-all duration-200 backdrop-blur-sm shadow-inner" 
+                           placeholder="••••••">
+                </div>
+
+                <button onclick="checkLogin()" 
+                        class="w-full max-w-[160px] py-2 bg-white text-red-600 font-extrabold text-xs rounded-full shadow-lg hover:bg-slate-50 active:scale-[0.97] transition-all duration-200 cursor-pointer tracking-wider uppercase">
+                    Unlock Heart ✨
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const passIn = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+            const lockShackle = document.getElementById('lock-shackle');
+
+            if (passIn === '030405') {
+                errorMsg.classList.add('hidden');
+                
+                // I-animate ang silver shackle pataas
+                lockShackle.style.transform = 'translateY(-35px) rotate(-12deg)';
+                
+                // I-save sa LocalStorage para malaman ng ibang pages na authenticated siya
+                localStorage.setItem('isLoveLoggedIn', 'true');
+                
+                // Hintayin matapos ang animation bago lumipat sa index.html
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 800);
+
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('password').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
